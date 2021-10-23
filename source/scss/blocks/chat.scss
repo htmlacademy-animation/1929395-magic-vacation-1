@@ -183,6 +183,26 @@
   }
 }
 
+@keyframes from-right-to-left {
+  0% {
+    left: 100%;
+  };
+
+  100% {
+    left: 0;
+  }
+}
+
 .chat__footer {
   margin-top: auto;
+
+  .form {
+    overflow: hidden;
+    border-radius: 3rem;
+  }
+
+  .form__field {
+    position: relative;
+    animation: from-right-to-left 0.7s;
+  }
 }
