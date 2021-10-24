@@ -6,6 +6,11 @@
       opacity: 1;
       pointer-events: auto;
       transition-duration: 0.5s;
+
+      .social-block__link {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   }
 }
@@ -172,6 +177,8 @@
   border: 2px solid transparent;
   border-radius: 50%;
   transition-duration: 0.3s;
+  opacity: 0;
+  transform: translateY(10px);
 
   @media (min-width: $stop-scaling) {
     width: 40px;
@@ -181,11 +188,17 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     color: $c-light;
     background-color: $c-dark;
+
+    opacity: 1;
+    transform: translateY(0);
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     color: $c-light;
     background-color: $c-dark;
+
+    opacity: 1;
+    transform: translateY(0);
   }
 
   &:hover {

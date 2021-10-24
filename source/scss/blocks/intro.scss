@@ -106,7 +106,7 @@
   font-size: 2.4rem;
   line-height: 1.27;
 
-  animation: fade-in-move-top 0.7s;
+  animation: ease-in fade-in-move-top 0.7s;
 
   @media (min-width: $stop-scaling) {
     width: 509px;

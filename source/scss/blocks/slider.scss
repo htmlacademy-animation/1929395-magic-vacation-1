@@ -1,12 +1,20 @@
-@keyframes fade-in-move-top {
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.screen {
+  &.active {
+    & .swiper-slide-active {
+      & .slider__item-text {
+        opacity: 1;
+        transform: translateX(0);
+        transition: all 0.4s ease-in;
+      }
+    }
 
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
+    & .swiper-slide-next {
+      & .slider__item-text {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.3s all 0.4s ease-in;
+      }
+    }
   }
 }
 
@@ -30,8 +38,6 @@
   flex-direction: column;
   padding: 14.6rem 4rem 10rem 9.7rem;
   height: auto;
-
-  animation: fade-in-move-top 0.7s;
 
   @media (min-width: $stop-scaling) {
     padding: 146px 40px 100px 97px;
@@ -110,6 +116,9 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+
+  opacity: 0;
+  transform: translateX(35px);
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
