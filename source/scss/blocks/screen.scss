@@ -1,3 +1,9 @@
+body.load {
+  .screen__footer {
+    bottom: 0;
+  }
+}
+
 .screen {
   position: relative;
   display: flex;
@@ -40,12 +46,15 @@
 
 .screen__footer {
   position: absolute;
-  bottom: 0;
+  bottom: -50px;
   left: 0;
   right: 0;
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
+
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 0.85, 0.50, 1);
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
