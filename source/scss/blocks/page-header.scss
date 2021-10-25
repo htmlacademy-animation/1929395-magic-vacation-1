@@ -1,3 +1,23 @@
+body.load {
+  .page-header__logo {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .page-header__menu {
+    opacity: 1;
+
+    a.active {
+      &::after {
+        width: 100%;
+        left: 0;
+        right: auto;
+        transition-duration: 0.5s;
+      }
+    }
+  }
+}
+
 .page-header {
   position: fixed;
   top: 0;
@@ -35,6 +55,10 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 0.85, 0.50, 1);
+  transform: translateX(-30px);
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -177,6 +201,9 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
+  opacity: 0;
+  transition-duration: 0.5s;
+  transition-timing-function: cubic-bezier(0, 0.85, 0.50, 1);
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;
@@ -281,7 +308,7 @@
     &.active {
       &::after {
         left: 0;
-        width: 100%;
+        width: 0%;
       }
     }
 
