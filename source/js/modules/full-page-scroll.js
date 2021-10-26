@@ -1,5 +1,8 @@
 import throttle from 'lodash/throttle';
 
+const HISTORY_PAGE = 1;
+const PRIZES_PAGE = 2;
+
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 1000;
@@ -9,7 +12,10 @@ export default class FullPageScroll {
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
+    this.prizeBackground = document.querySelector(`.prizes-background`);
+
     this.activeScreen = 0;
+    this.prevActiveScreen = 0;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
@@ -41,6 +47,7 @@ export default class FullPageScroll {
 
   onUrlHashChanged() {
     const newIndex = Array.from(this.screenElements).findIndex((screen) => location.hash.slice(1) === screen.id);
+    this.prevActiveScreen = this.activeScreen;
     this.activeScreen = (newIndex < 0) ? 0 : newIndex;
     this.changePageDisplay();
   }
@@ -51,15 +58,27 @@ export default class FullPageScroll {
     this.emitChangeDisplayEvent();
   }
 
-  changeVisibilityDisplay() {
+  addActiveScreen() {
     this.screenElements.forEach((screen) => {
       screen.classList.add(`screen--hidden`);
       screen.classList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    setTimeout(() => {
-      this.screenElements[this.activeScreen].classList.add(`active`);
-    }, 100);
+    this.screenElements[this.activeScreen].classList.add(`active`);
+  }
+
+  changeVisibilityDisplay() {
+    if (this.activeScreen === PRIZES_PAGE && this.prevActiveScreen === HISTORY_PAGE) {
+      this.prizeBackground.classList.add(`prizes-background-active`);
+
+      setTimeout(() => {
+        this.prizeBackground.classList.remove(`prizes-background-active`);
+        this.addActiveScreen();
+      }, 500);
+    } else {
+      this.prizeBackground.classList.remove(`prizes-background-active`);
+      this.addActiveScreen();
+    }
   }
 
   changeActiveMenuItem() {
